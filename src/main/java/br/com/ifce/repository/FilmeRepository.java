@@ -47,5 +47,20 @@ public class FilmeRepository {
 		
 		return filme;
 	}
+	
+	public void excluirFilme(Long codigo) {
+		
+		Transaction transaction = null;
+		Session session = HibernateConfig.getSessionFactory().openSession();
+		
+		transaction = session.beginTransaction();
+		
+		Filme filme = null;
+		filme = session.get(Filme.class, codigo);
+		session.delete(filme);
+		
+		transaction.commit();
+		
+		}
 
 }
